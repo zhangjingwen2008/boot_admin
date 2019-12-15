@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangjingwen.dao.UserMapper">
+
+    <insert id="add" parameterType="com.zhangjingwen.pojo.User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO user ( username, password, salt, createtime, updatetime )
+        VALUES
+            ( #{username}, #{password}, #{salt}, #{createtime}, #{updatetime} );
+    </insert>
+
+    <select id="findByToken" parameterType="java.lang.String" resultType="com.zhangjingwen.pojo.User">
+        SELECT
+            *
+        FROM
+            user
+        WHERE
+            token = #{token} and active=1
+    </select>
+
+</mapper>
