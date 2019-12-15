@@ -1,9 +1,12 @@
 package com.zhangjingwen.service.impl;
 
+import com.zhangjingwen.common.exception.code.CommonCode;
+import com.zhangjingwen.common.exception.code.CustomerCode;
 import com.zhangjingwen.common.response.ResponseResult;
 import com.zhangjingwen.dao.CustomerMapper;
 import com.zhangjingwen.pojo.Customer;
 import com.zhangjingwen.service.CustomerService;
+import com.zhangjingwen.web.utils.TimeAndDateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +17,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ResponseResult add(Customer customer) {
-        return null;
+        //新增用户
+        customer.setCreatetime(TimeAndDateUtils.getTimestamp());
+        customer.setUpdatetime(TimeAndDateUtils.getTimestamp());
+        int result = customerMapper.add(customer);
+        if (result == 0) {
+            return new ResponseResult(CustomerCode.CUSTOMER_ADD_FAIL);
+        }
+
+        return new ResponseResult(CommonCode.SUCCESS);
     }
 
     @Override
