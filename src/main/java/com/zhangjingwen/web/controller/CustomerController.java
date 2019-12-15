@@ -28,6 +28,11 @@ public class CustomerController {
         return customerService.update(customer);
     }
 
+    @GetMapping("/get/{customerId}")
+    public ResponseResult get(@PathVariable("customerId") int customerId) {
+        return customerService.get(customerId);
+    }
+
     @GetMapping("/list/{start}/{size}")
     public ResponseResult list(@PathVariable("start") int start,
                                @PathVariable("size") int size) {

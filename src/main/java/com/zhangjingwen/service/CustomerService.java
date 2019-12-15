@@ -3,6 +3,7 @@ package com.zhangjingwen.service;
 import com.zhangjingwen.common.response.Response;
 import com.zhangjingwen.common.response.ResponseResult;
 import com.zhangjingwen.pojo.Customer;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
 public interface CustomerService {
@@ -16,8 +17,9 @@ public interface CustomerService {
     ResponseResult update(Customer customer);
 
     //根据Id查询客户
-    ResponseResult findById(int customerId);
+    ResponseResult get(int customerId) ;
 
     //客户列表
     ResponseResult list(int start, int size);
+
 }

@@ -18,5 +18,5 @@ public interface CustomerMapper {
     Customer findById(int customerId);
 
     //分页查询客户列表
-    Page<Customer> list(int start, int size);
+    Page<Customer> list();
 }

@@ -26,6 +26,9 @@
         <if test="customerName!=null">
             customer_name = #{customerName},
         </if>
+        <if test="customerPhone!=null">
+            customer_phone = #{customerPhone},
+        </if>
         <if test="grade!=null">
             grade = #{grade},
         </if>
@@ -35,7 +38,7 @@
             AND active =1
     </update>
 
-    <select id="list" parameterType="com.zhangjingwen.pojo.Customer">
+    <select id="list" resultType="com.zhangjingwen.pojo.Customer">
         select * from customer where active=1
     </select>
 
