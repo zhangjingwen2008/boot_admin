@@ -3,7 +3,8 @@ package com.zhangjingwen.common.exception.code;
 import com.zhangjingwen.common.response.ResultCode;
 
 public enum UserCode implements ResultCode {
-    USER_LOGIN_FAIL(false, 2001, "账户名或密码错误");
+    USER_LOGIN_FAIL(false, 2001, "帐户名或密码错误"),
+    USER_NOT_EXIST(false, 2002, "帐户对象不存在");
 
     boolean success;
     int code;

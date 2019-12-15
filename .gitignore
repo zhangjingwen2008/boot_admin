@@ -7,4 +7,5 @@
 *.iml
 out
 gen
+src/test/
 !/src/main/resources/application.properties

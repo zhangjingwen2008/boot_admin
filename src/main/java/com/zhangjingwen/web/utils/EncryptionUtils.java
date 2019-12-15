@@ -1,6 +1,8 @@
 package com.zhangjingwen.web.utils;
 
 import java.security.MessageDigest;
+import java.util.Date;
+
 import org.apache.commons.codec.binary.Hex;
 
 public class EncryptionUtils {
@@ -14,5 +16,12 @@ public class EncryptionUtils {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    //获得指定时间前后的时间戳
+    public static long getAfterTime(int days) {
+        long time = (long) days * 86400000;
+        long afterTime = new Date(System.currentTimeMillis() + time).getTime()/1000;
+        return afterTime;
     }
 }
