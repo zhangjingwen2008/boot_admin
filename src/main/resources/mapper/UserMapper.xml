@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangjingwen.dao.UserMapper">
+
+    <insert id="add" parameterType="com.zhangjingwen.pojo.User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO user ( username, password, salt, createtime, updatetime )
+        VALUES
+            ( #{username}, #{password}, #{salt}, #{createtime}, #{updatetime} );
+    </insert>
+
+    <update id="update" parameterType="com.zhangjingwen.pojo.User">
+        UPDATE USER
+	    SET
+	    <if test="token!=null">
+            token = #{token},
+        </if>
+        <if test="timeout!=null">
+            timeout=#{timeout},
+        </if>
+	    updatetime=#{updatetime}
+	    where user_id=#{userId}
+	    and active=1
+    </update>
+
+    <select id="findByToken" parameterType="java.lang.String" resultType="com.zhangjingwen.pojo.User">
+        SELECT
+            *
+        FROM
+            user
+        WHERE
+            token = #{token} and active=1
+    </select>
+
+    <select id="findByUsername" parameterType="java.lang.String" resultType="com.zhangjingwen.pojo.User">
+        SELECT
+            *
+        FROM
+            user
+        WHERE
+            username = #{username} and active=1
+    </select>
+
+</mapper>
