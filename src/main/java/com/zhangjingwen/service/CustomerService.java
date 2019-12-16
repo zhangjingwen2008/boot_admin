@@ -22,4 +22,7 @@ public interface CustomerService {
     //客户列表
     ResponseResult list(int start, int size);
 
+    //根据等级筛选客户
+    ResponseResult listByGrade(int start, int size, String garde);
+
 }

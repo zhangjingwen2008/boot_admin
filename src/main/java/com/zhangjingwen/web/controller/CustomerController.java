@@ -39,4 +39,11 @@ public class CustomerController {
         return customerService.list(start, size);
     }
 
+    @GetMapping("/listByGrade/{grade}/{start}/{size}")
+    public ResponseResult list(@PathVariable("grade") String grade,
+                               @PathVariable("start") int start,
+                               @PathVariable("size") int size) {
+        return customerService.listByGrade(start, size, grade);
+    }
+
 }

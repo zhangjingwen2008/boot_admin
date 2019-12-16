@@ -19,4 +19,8 @@ public interface CustomerMapper {
 
     //分页查询客户列表
     Page<Customer> list();
+
+    //根据客户等级筛选客户
+    Page<Customer> listByGrade(String grade);
+
 }

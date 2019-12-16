@@ -105,4 +105,30 @@ public class CustomerServiceImpl implements CustomerService {
 
         return new DataPageResult(CommonCode.SUCCESS, page, list);
     }
+
+    //根据等级筛选客户
+    @Override
+    public ResponseResult listByGrade(int start, int size, String grade) {
+        if (start < 1) {
+            start = 1;
+        }
+        if (size < 0) {
+            size = 10;
+        }
+        PageHelper.startPage(start, size);
+        Page<Customer> page = customerMapper.listByGrade(grade);
+
+        JSONArray list = new JSONArray();
+        for (Customer customer : page) {
+            JSONObject data = new JSONObject();
+            data.put("customerId", customer.getCustomerId());
+            data.put("customerName", customer.getCustomerName());
+            data.put("customerPhone", customer.getCustomerPhone());
+            data.put("grade", customer.getGrade());
+            data.put("createTime", TimeAndDateUtils.getDateFromTimestamp(customer.getCreatetime()));
+            list.add(data);
+        }
+
+        return new DataPageResult(CommonCode.SUCCESS, page, list);
+    }
 }

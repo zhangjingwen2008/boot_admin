@@ -42,4 +42,8 @@
         select * from customer where active=1
     </select>
 
+    <select id="listByGrade" parameterType="java.lang.String" resultType="com.zhangjingwen.pojo.Customer">
+        select * from customer where active=1 and grade=#{grade}
+    </select>
+
 </mapper>
