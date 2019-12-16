@@ -9,4 +9,7 @@ public interface UserService {
 
     //登录
     ResponseResult login(User user);
+
+    //根据Token获取当前对象
+    User getUser();
 }

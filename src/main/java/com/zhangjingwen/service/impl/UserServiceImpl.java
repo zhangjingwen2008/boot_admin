@@ -14,7 +14,10 @@ import com.zhangjingwen.web.utils.EncryptionUtils;
 import com.zhangjingwen.web.utils.TimeAndDateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
 @Service
@@ -91,5 +94,13 @@ public class UserServiceImpl implements UserService {
         }
 
         return new DataResult<>(CommonCode.SUCCESS, token);
+    }
+
+    @Override
+    public User getUser() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String token = request.getHeader("Token");
+        User user = userMapper.findByToken(token);
+        return user;
     }
 }

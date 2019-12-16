@@ -4,7 +4,8 @@ import com.zhangjingwen.common.response.ResultCode;
 
 public enum UserCode implements ResultCode {
     USER_LOGIN_FAIL(false, 2001, "帐户名或密码错误"),
-    USER_NOT_EXIST(false, 2002, "帐户对象不存在");
+    USER_NOT_EXIST(false, 2002, "帐户对象不存在"),
+    USER_TIMEOUT(false, 2003, "登陆过期");
 
     boolean success;
     int code;
